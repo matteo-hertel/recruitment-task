@@ -1,0 +1,26 @@
+{
+  "name": "thirdbridge/assignment",
+  "description": "rectuitment task",
+  "type": "project",
+  "require": {
+    "symfony/yaml": "^3.3.2",
+    "phpunit/phpunit": "^6.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "ThirdBridge\\": "thirdbridge/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matteo Hertel",
+      "email": "info@matteohertel.com"
+    }
+  ]
+}
