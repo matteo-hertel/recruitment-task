@@ -51,6 +51,8 @@ class ParsersTest extends TestCase
 
         $this->assertTrue(is_array($inst->getContent()));
         $this->assertTrue(is_array($inst->getContent()["users"]));
+        $this->assertSame(count($inst->getContent()["users"]), 4);
+
 
     }
 

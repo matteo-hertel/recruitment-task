@@ -28,14 +28,16 @@ class User implements Interfaces\UserInterface
      */
     public function getValue(): int
     {
-        return $this->user->value;
+        return (int)$this->user->value;
     }
 
     /**
+     * add the filter war to handle strings like "false"
+     *
      * @return bool
      */
     public function isActive(): bool
     {
-        return $this->user->active;
+        return filter_var($this->user->active, FILTER_VALIDATE_BOOLEAN);
     }
 }

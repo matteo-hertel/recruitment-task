@@ -16,6 +16,10 @@ class CsvParser implements Interfaces\FileParserInterface
      * @var array
      */
     private $data = [];
+    /**
+     * @var array
+     */
+    private $keys = [];
 
     /**
      * CsvParser constructor.
@@ -34,7 +38,11 @@ class CsvParser implements Interfaces\FileParserInterface
         $handle = fopen($filePath, "r");
 
         for ($i = 0; $row = fgetcsv($handle); ++$i) {
-            $this->data[$this->rootKey][] = $row;
+            if (!$i) { // skip heading
+                $this->keys = $row;
+                continue;
+            }
+            $this->data[$this->rootKey][] = array_combine($this->keys, $row);
         }
 
         fclose($handle);

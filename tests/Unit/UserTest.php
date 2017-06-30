@@ -63,8 +63,8 @@ class UserTest extends TestCase
     /**
      * Check return type note above
      *
-     * note for the asserSame, the value from the fixture is casted as int to check the return type
-     * asserEqual could do the same but there won't be difference between "1" and 1
+     * note for the assertSame, the value from the fixture is casted as int to check the return type
+     * assertEqual could do the same but there won't be difference between "1" and 1
      *
      * @return void
      */
