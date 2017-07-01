@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use \ThirdBridge\BusinessLogic\UsersLogic;
+use ThirdBridge\Interfaces\FileParserInterface;
 
 /**
  * Class UsersScriptCommand
@@ -45,6 +46,11 @@ class UsersScriptCommand extends Command
             $class = sprintf("\ThirdBridge\%sParser", ucfirst($parserType));
             if (!class_exists($class)) {
                 throw new Exception("Missing Parser");
+            }
+
+            $reflection = new \ReflectionClass($class);
+            if (!$reflection->implementsInterface(FileParserInterface::class)) {
+                throw new Exception("Invalid Parser");
             }
 
             $inst = new $class();

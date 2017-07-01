@@ -3,6 +3,7 @@
 namespace ThirdBridge\Cli;
 
 use \ThirdBridge\BusinessLogic\UsersLogic;
+use ThirdBridge\Interfaces\FileParserInterface;
 
 /**
  * Class CustomCommand
@@ -50,6 +51,11 @@ class CustomCommand
             $class = sprintf("\ThirdBridge\%sParser", ucfirst($parserType));
             if (!class_exists($class)) {
                 throw new Exception("Missing Parser");
+            }
+
+            $reflection = new \ReflectionClass($class);
+            if (!$reflection->implementsInterface(FileParserInterface::class)) {
+                throw new Exception("Invalid Parser");
             }
 
             $inst = new $class();
