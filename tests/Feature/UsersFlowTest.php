@@ -8,14 +8,30 @@ use ThirdBridge\BusinessLogic\UsersLogic;
 use ThirdBridge\CsvParser;
 use \ThirdBridge\XmlParser;
 
+/**
+ *
+ */
 define("APP_ROOT_KEY", "users");
 
+/**
+ * Class UsersFlowTest
+ * @package Tests\Feature
+ */
 class UsersFlowTest extends TestCase
 {
+    /**
+     * @var string
+     */
     private $resultFile = __DIR__ . "/../../results/results.txt";
 
+    /**
+     * @var int
+     */
     private $expectedScore = 900;
 
+    /**
+     *
+     */
     public function testUsersLogic()
     {
 

@@ -7,10 +7,17 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
+use \ThirdBridge\BusinessLogic\UsersLogic;
 
-
+/**
+ * Class UsersScriptCommand
+ * @package ThirdBridge\Commands
+ */
 class UsersScriptCommand extends Command
 {
+    /**
+     * configure the CLI command
+     */
     protected function configure()
     {
         $this
@@ -22,6 +29,12 @@ class UsersScriptCommand extends Command
             ->addArgument('input', InputArgument::OPTIONAL, 'Input file');;
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     *
+     * @return void
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
@@ -39,7 +52,7 @@ class UsersScriptCommand extends Command
 
             $users = $inst->getContent();
 
-            $logic = new \ThirdBridge\BusinessLogic\UsersLogic();
+            $logic = new UsersLogic();
 
             $logic->loadUsers($users);
 
@@ -48,7 +61,7 @@ class UsersScriptCommand extends Command
                 return;
             }
 
-            $logic->storeResult(__DIR__ . "/../..//$outputFile", $logic->getActiveScore());
+            $logic->storeResult(__DIR__ . "/../../$outputFile", $logic->getActiveScore());
 
 
         } catch (\Exception $exc) {
